@@ -3,13 +3,13 @@
     "packageRules": [
         {
             "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-            "assignees": ["@renovate-bot", "@neureka"],
+            "assignees": ["@renovate", "@neureka"],
             "labels": ["Type/Dependency"],
             "automerge": false
         }
     ],
     "vulnerabilityAlerts": {
-        "assignees": ["@renovate-bot", "@neureka"],
+        "assignees": ["@renovate", "@neureka"],
         "labels": ["Type/Dependency", "Type/Security"],
         "automerge": true
     },
