@@ -81,15 +81,6 @@
                             <option value="Czech">Čeština</option>
                         </select>
                     </div>
-                    <div class="selectContainer">
-                        <label class="selectLabel" for="AutoUpdateSchedule">Auto Update Posters</label>
-                        <select is="emby-select" id="AutoUpdateSchedule" name="AutoUpdateSchedule" class="emby-select-withcolor emby-select">
-                            <option value="Disabled">Disabled</option>
-                            <option value="Daily">Daily (day starts at 12 AM)</option>
-                            <option value="Weekly">Weekly (Sunday at 12 AM)</option>
-                            <option value="Monthly">Monthly (month starts at 12 AM)</option>
-                        </select>
-                    </div>
                     <div>
                         <button is="emby-button" type="submit" class="raised button-submit block emby-button">
                             <span>Save</span>
@@ -118,7 +109,6 @@
                         betterPostersElement('RatingSource').value = config.RatingSource;
                         betterPostersElement('EnableAgeRating').checked = config.EnableAgeRating;
                         betterPostersElement('Language').value = config.Language;
-                        betterPostersElement('AutoUpdateSchedule').value = config.AutoUpdateSchedule;
                         Dashboard.hideLoadingMsg();
                     });
                 });
@@ -134,7 +124,6 @@
                         config.RatingSource = betterPostersElement('RatingSource').value;
                         config.EnableAgeRating = betterPostersElement('EnableAgeRating').checked;
                         config.Language = betterPostersElement('Language').value;
-                        config.AutoUpdateSchedule = betterPostersElement('AutoUpdateSchedule').value;
                         ApiClient.updatePluginConfiguration(BetterPostersConfig.pluginUniqueId, config).then(function (result) {
                             Dashboard.processPluginConfigurationUpdateResult(result);
                         });

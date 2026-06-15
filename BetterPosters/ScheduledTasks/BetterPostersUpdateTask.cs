@@ -54,8 +54,7 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
     public bool IsHidden => false;
 
     /// <inheritdoc />
-    public bool IsEnabled => Plugin.Instance?.Configuration.AutoUpdateSchedule is AutoUpdateSchedule schedule
-        && schedule != AutoUpdateSchedule.Disabled;
+    public bool IsEnabled => true;
 
     /// <inheritdoc />
     public bool IsLogged => true;
@@ -64,12 +63,6 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
     public async Task ExecuteAsync(IProgress<double> progress, CancellationToken cancellationToken)
     {
         var configuration = Plugin.Instance?.Configuration ?? new PluginConfiguration();
-        if (!ShouldRun(configuration.AutoUpdateSchedule, DateTime.Now))
-        {
-            progress.Report(100);
-            return;
-        }
-
         var items = _libraryManager.GetItemList(new InternalItemsQuery
         {
             IncludeItemTypes = [BaseItemKind.Movie, BaseItemKind.Series],
@@ -94,25 +87,7 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
     /// <inheritdoc />
     public IEnumerable<TaskTriggerInfo> GetDefaultTriggers()
     {
-        return
-        [
-            new TaskTriggerInfo
-            {
-                Type = TaskTriggerInfoType.DailyTrigger,
-                TimeOfDayTicks = TimeSpan.Zero.Ticks
-            }
-        ];
-    }
-
-    internal static bool ShouldRun(AutoUpdateSchedule schedule, DateTime now)
-    {
-        return schedule switch
-        {
-            AutoUpdateSchedule.Daily => true,
-            AutoUpdateSchedule.Weekly => now.DayOfWeek == DayOfWeek.Sunday,
-            AutoUpdateSchedule.Monthly => now.Day == 1,
-            _ => false
-        };
+        return [];
     }
 
     private async Task UpdateItem(BaseItem item, PluginConfiguration configuration, CancellationToken cancellationToken)

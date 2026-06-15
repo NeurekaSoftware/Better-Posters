@@ -1,6 +1,6 @@
 # Better Posters
 
-**Better Posters** is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from [btttr.cc](https://btttr.cc). It uses the media item's IMDb ID and lets you choose poster badges, labels, rating source, language, and optional scheduled replacement from the Jellyfin plugin settings page.
+**Better Posters** is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from [btttr.cc](https://btttr.cc). It uses the media item's IMDb ID and lets you choose poster badges, labels, rating source, and language from the Jellyfin plugin settings page.
 
 **Minimum Jellyfin version:** 10.11.10
 
@@ -10,7 +10,7 @@
 - **Configurable Poster Overlays:** Toggle trend tags, quality badges, genre, rating, and age rating.
 - **Rating Source Selection:** Use btttr.cc average ratings or choose IMDb, TMDB, Rotten Tomatoes, Metacritic, Trakt, Letterboxd, or Roger Ebert.
 - **Multi-Language Posters:** Select English, Spanish, French, German, Portuguese, Italian, Dutch, Polish, Russian, Turkish, Arabic, Japanese, Korean, Chinese, Hindi, Swedish, or Czech.
-- **Scheduled Replacement:** Optionally replace existing movie and show posters daily, weekly, or monthly.
+- **Scheduled Replacement:** Optionally replace existing movie and show posters through Jellyfin Scheduled Tasks.
 
 ## Installation Guide
 
@@ -68,16 +68,8 @@ Default settings:
 - **Ratings Source:** Average
 - **Age Rating:** Disabled
 - **Language:** English
-- **Auto Update Posters:** Disabled
 
-Auto update schedules:
-
-- **Disabled:** Never replaces posters automatically.
-- **Daily:** Runs at the start of each day.
-- **Weekly:** Runs on Sunday at the start of the day.
-- **Monthly:** Runs on the first day of the month.
-
-Auto update replaces existing primary posters for Movies and Shows that have an IMDb ID.
+The **Update Better Posters** scheduled task is unscheduled by default. Configure it under **Dashboard -> Scheduled Tasks** to replace existing primary posters for Movies and Shows that have an IMDb ID.
 
 ## How to Apply Posters to Your Library
 
@@ -97,9 +89,9 @@ Auto update replaces existing primary posters for Movies and Shows that have an 
 
 ### Option C: Apply Automatically
 
-1. Open the Better Posters plugin settings.
-2. Set **Auto Update Posters** to Daily, Weekly, or Monthly.
-3. Save the configuration.
+1. Open **Dashboard -> Scheduled Tasks**.
+2. Select **Update Better Posters**.
+3. Add the schedule you want Jellyfin to use.
 4. The scheduled task will replace matching movie and show primary images using the current poster settings.
 
 ## Troubleshooting
@@ -107,7 +99,6 @@ Auto update replaces existing primary posters for Movies and Shows that have an 
 - **No Better Posters image appears:** Confirm the item has an IMDb ID. This plugin intentionally uses IMDb IDs for btttr.cc URLs.
 - **Plugin does not load:** Confirm the server is Jellyfin 10.11.10 or newer in the 10.11 line and restart Jellyfin after copying the plugin DLL.
 - **Poster did not change after selecting one:** Clear the browser cache or check another Jellyfin client. Jellyfin and browsers can cache images aggressively.
-- **Scheduled update did not run monthly:** The task wakes daily at midnight and only performs monthly work on day 1 of the month.
 
 ## Disclaimer
 

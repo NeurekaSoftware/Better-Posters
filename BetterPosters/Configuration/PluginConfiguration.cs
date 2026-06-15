@@ -145,32 +145,6 @@ public enum PosterLanguage
 }
 
 /// <summary>
-/// Automatic poster update schedule.
-/// </summary>
-public enum AutoUpdateSchedule
-{
-    /// <summary>
-    /// Do not automatically replace posters.
-    /// </summary>
-    Disabled,
-
-    /// <summary>
-    /// Replace posters daily.
-    /// </summary>
-    Daily,
-
-    /// <summary>
-    /// Replace posters weekly.
-    /// </summary>
-    Weekly,
-
-    /// <summary>
-    /// Replace posters monthly.
-    /// </summary>
-    Monthly
-}
-
-/// <summary>
 /// Plugin configuration.
 /// </summary>
 public class PluginConfiguration : BasePluginConfiguration
@@ -187,7 +161,6 @@ public class PluginConfiguration : BasePluginConfiguration
         RatingSource = PosterRatingSource.Average;
         EnableAgeRating = false;
         Language = PosterLanguage.English;
-        AutoUpdateSchedule = AutoUpdateSchedule.Disabled;
     }
 
     /// <summary>
@@ -224,9 +197,4 @@ public class PluginConfiguration : BasePluginConfiguration
     /// Gets or sets the poster language.
     /// </summary>
     public PosterLanguage Language { get; set; }
-
-    /// <summary>
-    /// Gets or sets the automatic poster update schedule.
-    /// </summary>
-    public AutoUpdateSchedule AutoUpdateSchedule { get; set; }
 }
