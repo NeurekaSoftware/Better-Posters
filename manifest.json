@@ -4,7 +4,7 @@
         "name": "Better Posters",
         "description": "Fetches configurable btttr.cc primary posters for Jellyfin movies and shows.\n",
         "overview": "Fetch configurable Better Posters images from btttr.cc",
-        "owner": "neureka",
+        "owner": "Neureka",
         "category": "MoviesAndShows",
         "versions": [
             {

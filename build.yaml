@@ -8,8 +8,8 @@ overview: "Fetch configurable Better Posters images from btttr.cc"
 description: >
   Fetches configurable btttr.cc primary posters for Jellyfin movies and shows.
 category: "MoviesAndShows"
-owner: "neureka"
+owner: "Neureka"
 artifacts:
-- "BetterPosters.dll"
+  - "BetterPosters.dll"
 changelog: >
   Initial Better Posters release for Jellyfin 10.11.10.
