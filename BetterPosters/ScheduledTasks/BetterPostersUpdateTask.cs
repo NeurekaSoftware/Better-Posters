@@ -18,6 +18,10 @@ namespace BetterPosters.ScheduledTasks;
 /// </summary>
 public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTask
 {
+    private const int UpdateItemResultUpdated = 0;
+    private const int UpdateItemResultSkipped = 1;
+    private const int UpdateItemResultFailed = 2;
+
     private readonly ILibraryManager _libraryManager;
     private readonly IProviderManager _providerManager;
     private readonly ILogger<BetterPostersUpdateTask> _logger;
@@ -72,16 +76,42 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
 
         if (items.Count == 0)
         {
+            _logger.LogInformation("No movies or shows with IMDb IDs were found for Better Posters update");
             progress.Report(100);
             return;
         }
 
+        var updatedCount = 0;
+        var skippedCount = 0;
+        var failedCount = 0;
+
+        _logger.LogInformation("Updating Better Posters images for {ItemCount} items", items.Count);
+
         for (var index = 0; index < items.Count; index++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            await UpdateItem(items[index], configuration, cancellationToken).ConfigureAwait(false);
+            var result = await UpdateItem(items[index], configuration, cancellationToken).ConfigureAwait(false);
+            switch (result)
+            {
+                case UpdateItemResultUpdated:
+                    updatedCount++;
+                    break;
+                case UpdateItemResultSkipped:
+                    skippedCount++;
+                    break;
+                case UpdateItemResultFailed:
+                    failedCount++;
+                    break;
+            }
+
             progress.Report((index + 1) * 100D / items.Count);
         }
+
+        _logger.LogInformation(
+            "Better Posters update finished: {UpdatedCount} updated, {SkippedCount} skipped, {FailedCount} failed",
+            updatedCount,
+            skippedCount,
+            failedCount);
     }
 
     /// <inheritdoc />
@@ -90,18 +120,20 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
         return [];
     }
 
-    private async Task UpdateItem(BaseItem item, PluginConfiguration configuration, CancellationToken cancellationToken)
+    private async Task<int> UpdateItem(BaseItem item, PluginConfiguration configuration, CancellationToken cancellationToken)
     {
         var imdbId = item.GetProviderId(MetadataProvider.Imdb);
         if (string.IsNullOrWhiteSpace(imdbId))
         {
-            return;
+            return UpdateItemResultSkipped;
         }
 
         var url = BetterPosterUrlBuilder.Build(imdbId, configuration);
         try
         {
             await _providerManager.SaveImage(item, url, ImageType.Primary, null, cancellationToken).ConfigureAwait(false);
+            await item.UpdateToRepositoryAsync(ItemUpdateType.ImageUpdate, cancellationToken).ConfigureAwait(false);
+            return UpdateItemResultUpdated;
         }
         catch (OperationCanceledException)
         {
@@ -110,6 +142,7 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "Failed to update Better Posters image for {ItemName} ({ItemId})", item.Name, item.Id);
+            return UpdateItemResultFailed;
         }
     }
 }
