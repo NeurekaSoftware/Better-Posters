@@ -12,9 +12,6 @@ jobs:
     with:
       dotnet-version: 9.0.x
       dotnet-framework: net9.0
-      plugin-path: .
-      manifest-branch: master
-      manifest-path: manifest.json
       test-command: dotnet test BetterPosters.sln --configuration Release --verbosity normal
     secrets:
       MANIFEST_PUSH_TOKEN: ${{ secrets.MANIFEST_PUSH_TOKEN }}
