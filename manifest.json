@@ -8,6 +8,14 @@
         "category": "MoviesAndShows",
         "versions": [
             {
+                "version": "1.0.2.0",
+                "changelog": "### Fixed\n- Fix Update Better Posters so manual task runs replace existing movie and show posters.\n",
+                "targetAbi": "10.11.10.0",
+                "sourceUrl": "https://code.neureka.dev/jellyfin/better-posters/releases/download/1.0.2/better-posters_1.0.2.0.zip",
+                "checksum": "f2c39c0aae30c7a013959a370f4d97f5",
+                "timestamp": "2026-06-15T06:20:22Z"
+            },
+            {
                 "version": "1.0.1.0",
                 "changelog": "### Changed\n- Move automatic poster update scheduling to Jellyfin Scheduled Tasks.\n\n### Fixed\n- Stop Update Better Posters from being scheduled daily by default.\n- Clarify rating labels in plugin settings.\n",
                 "targetAbi": "10.11.10.0",
