@@ -6,7 +6,7 @@ targetAbi: "10.11.10.0"
 framework: "net9.0"
 overview: "Fetch configurable Better Posters images from btttr.cc"
 description: >
-  Fetches configurable btttr.cc primary posters for Jellyfin movies and shows.
+  Better Posters is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from btttr.cc.
 category: "MoviesAndShows"
 owner: "Neureka"
 imageUrl: "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Catalog.png"

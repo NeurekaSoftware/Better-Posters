@@ -2,7 +2,7 @@
     {
         "guid": "862b7dbc-9485-41f2-a9d9-fc9ca66a6a51",
         "name": "Better Posters",
-        "description": "Fetches configurable btttr.cc primary posters for Jellyfin movies and shows.\n",
+        "description": "Better Posters is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from btttr.cc.\n",
         "overview": "Fetch configurable Better Posters images from btttr.cc",
         "owner": "Neureka",
         "category": "MoviesAndShows",
