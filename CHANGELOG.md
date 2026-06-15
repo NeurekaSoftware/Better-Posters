@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-06-15
+
+### Changed
+- Move automatic poster update scheduling to Jellyfin Scheduled Tasks.
+
+### Fixed
+- Stop Update Better Posters from being scheduled daily by default.
+- Clarify rating labels in plugin settings.
+
 ## [1.0.0] - 2026-06-15
 
 ### Added

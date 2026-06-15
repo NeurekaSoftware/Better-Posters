@@ -1,7 +1,7 @@
 ---
 name: "Better Posters"
 guid: "862b7dbc-9485-41f2-a9d9-fc9ca66a6a51"
-version: "1.0.0.0"
+version: "1.0.1.0"
 targetAbi: "10.11.10.0"
 framework: "net9.0"
 overview: "Fetch configurable Better Posters images from btttr.cc"
@@ -11,5 +11,10 @@ category: "MoviesAndShows"
 owner: "Neureka"
 artifacts:
   - "BetterPosters.dll"
-changelog: >
-  Initial Better Posters release for Jellyfin 10.11.10.
+changelog: |
+  ### Changed
+  - Move automatic poster update scheduling to Jellyfin Scheduled Tasks.
+
+  ### Fixed
+  - Stop Update Better Posters from being scheduled daily by default.
+  - Clarify rating labels in plugin settings.
