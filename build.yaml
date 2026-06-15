@@ -9,7 +9,7 @@ description: >
   Fetches configurable btttr.cc primary posters for Jellyfin movies and shows.
 category: "MoviesAndShows"
 owner: "Neureka"
-imageUrl: "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Logo.png"
+imageUrl: "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Catalog.png"
 artifacts:
   - "BetterPosters.dll"
 changelog: |

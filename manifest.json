@@ -6,7 +6,7 @@
         "overview": "Fetch configurable Better Posters images from btttr.cc",
         "owner": "Neureka",
         "category": "MoviesAndShows",
-        "imageUrl": "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Logo.png",
+        "imageUrl": "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Catalog.png",
         "versions": [
             {
                 "version": "1.0.2.0",
