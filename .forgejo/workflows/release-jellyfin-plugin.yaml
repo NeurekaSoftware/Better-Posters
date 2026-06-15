@@ -13,5 +13,3 @@ jobs:
       dotnet-version: 9.0.x
       dotnet-framework: net9.0
       test-command: dotnet test BetterPosters.sln --configuration Release --verbosity normal
-    secrets:
-      MANIFEST_PUSH_TOKEN: ${{ secrets.MANIFEST_PUSH_TOKEN }}
