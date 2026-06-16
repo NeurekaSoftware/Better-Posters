@@ -9,6 +9,14 @@
         "imageUrl": "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Assets/Catalog.png",
         "versions": [
             {
+                "version": "1.0.3.0",
+                "changelog": "### Added\n- Add catalog and preview artwork for plugin listings.\n\n### Fixed\n- Prevent Update Better Posters from replacing posters in libraries where Better Posters is disabled.\n",
+                "targetAbi": "10.11.10.0",
+                "sourceUrl": "https://code.neureka.dev/jellyfin/better-posters/releases/download/1.0.3/better-posters_1.0.3.0.zip",
+                "checksum": "28aad7898e261f261979fd11e7741f42",
+                "timestamp": "2026-06-16T09:47:21Z"
+            },
+            {
                 "version": "1.0.2.0",
                 "changelog": "### Fixed\n- Fix Update Better Posters so manual task runs replace existing movie and show posters.\n",
                 "targetAbi": "10.11.10.0",
