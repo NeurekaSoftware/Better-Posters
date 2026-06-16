@@ -5,10 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using BetterPosters.ScheduledTasks;
 using Jellyfin.Data.Enums;
+using MediaBrowser.Controller.BaseItemManager;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.Movies;
 using MediaBrowser.Controller.Library;
 using MediaBrowser.Controller.Providers;
+using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Entities;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
@@ -37,6 +39,20 @@ public class BetterPostersUpdateTaskExecutionTests
             provider => provider.SaveImage(item, DefaultPosterUrl, ImageType.Primary, null, It.IsAny<CancellationToken>()),
             Times.Once);
         Assert.Equal([ItemUpdateType.ImageUpdate], item.UpdateReasons);
+        Assert.Equal([100D], progress.Values);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WithItemInLibraryWhereBetterPostersIsDisabled_SkipsImageUpdate()
+    {
+        var item = CreateMovie(ImdbId);
+        var (task, providerManager, _) = CreateTask([item], imageFetcherEnabled: false);
+        var progress = new RecordingProgress();
+
+        await task.ExecuteAsync(progress, CancellationToken.None);
+
+        providerManager.VerifyNoOtherCalls();
+        Assert.Empty(item.UpdateReasons);
         Assert.Equal([100D], progress.Values);
     }
 
@@ -94,19 +110,32 @@ public class BetterPostersUpdateTaskExecutionTests
         Assert.Equal(100D, progress.Values.Last());
     }
 
-    private static (BetterPostersUpdateTask Task, Mock<IProviderManager> ProviderManager, Mock<ILibraryManager> LibraryManager) CreateTask(IReadOnlyList<BaseItem> items)
+    private static (BetterPostersUpdateTask Task, Mock<IProviderManager> ProviderManager, Mock<ILibraryManager> LibraryManager) CreateTask(
+        IReadOnlyList<BaseItem> items,
+        bool imageFetcherEnabled = true)
     {
         var libraryManager = new Mock<ILibraryManager>(MockBehavior.Strict);
         libraryManager
             .Setup(manager => manager.GetItemList(It.Is<InternalItemsQuery>(query => IsBetterPostersQuery(query))))
             .Returns(items);
+        libraryManager
+            .Setup(manager => manager.GetLibraryOptions(It.IsAny<BaseItem>()))
+            .Returns((BaseItem item) => CreateLibraryOptions(item, imageFetcherEnabled));
 
         var providerManager = new Mock<IProviderManager>(MockBehavior.Strict);
+        var baseItemManager = new Mock<IBaseItemManager>(MockBehavior.Strict);
+        baseItemManager
+            .Setup(manager => manager.IsImageFetcherEnabled(
+                It.IsAny<BaseItem>(),
+                It.IsAny<TypeOptions>(),
+                Plugin.PluginName))
+            .Returns(imageFetcherEnabled);
 
         return (
             new BetterPostersUpdateTask(
                 libraryManager.Object,
                 providerManager.Object,
+                baseItemManager.Object,
                 NullLogger<BetterPostersUpdateTask>.Instance),
             providerManager,
             libraryManager);
@@ -117,6 +146,21 @@ public class BetterPostersUpdateTaskExecutionTests
         var item = new TrackingMovie();
         item.SetProviderId(MetadataProvider.Imdb, imdbId);
         return item;
+    }
+
+    private static LibraryOptions CreateLibraryOptions(BaseItem item, bool imageFetcherEnabled)
+    {
+        return new LibraryOptions
+        {
+            TypeOptions =
+            [
+                new TypeOptions
+                {
+                    Type = item.GetType().Name,
+                    ImageFetchers = imageFetcherEnabled ? [Plugin.PluginName] : []
+                }
+            ]
+        };
     }
 
     private static bool IsBetterPostersQuery(InternalItemsQuery query)

@@ -32,6 +32,7 @@ public class BetterPostersUpdateTaskTests
         return new BetterPostersUpdateTask(
             null!,
             null!,
+            null!,
             NullLogger<BetterPostersUpdateTask>.Instance);
     }
 }

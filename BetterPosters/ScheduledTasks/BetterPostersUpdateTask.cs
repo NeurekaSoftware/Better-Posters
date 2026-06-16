@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BetterPosters.Configuration;
 using Jellyfin.Data.Enums;
+using MediaBrowser.Controller.BaseItemManager;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Library;
 using MediaBrowser.Controller.Providers;
@@ -24,6 +25,7 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
 
     private readonly ILibraryManager _libraryManager;
     private readonly IProviderManager _providerManager;
+    private readonly IBaseItemManager _baseItemManager;
     private readonly ILogger<BetterPostersUpdateTask> _logger;
 
     /// <summary>
@@ -31,14 +33,17 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
     /// </summary>
     /// <param name="libraryManager">The library manager.</param>
     /// <param name="providerManager">The provider manager.</param>
+    /// <param name="baseItemManager">The base item manager.</param>
     /// <param name="logger">The logger.</param>
     public BetterPostersUpdateTask(
         ILibraryManager libraryManager,
         IProviderManager providerManager,
+        IBaseItemManager baseItemManager,
         ILogger<BetterPostersUpdateTask> logger)
     {
         _libraryManager = libraryManager;
         _providerManager = providerManager;
+        _baseItemManager = baseItemManager;
         _logger = logger;
     }
 
@@ -124,6 +129,13 @@ public class BetterPostersUpdateTask : IScheduledTask, IConfigurableScheduledTas
     {
         var imdbId = item.GetProviderId(MetadataProvider.Imdb);
         if (string.IsNullOrWhiteSpace(imdbId))
+        {
+            return UpdateItemResultSkipped;
+        }
+
+        var libraryOptions = _libraryManager.GetLibraryOptions(item);
+        var typeOptions = libraryOptions.GetTypeOptions(item.GetType().Name);
+        if (!_baseItemManager.IsImageFetcherEnabled(item, typeOptions, Plugin.PluginName))
         {
             return UpdateItemResultSkipped;
         }
