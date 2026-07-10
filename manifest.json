@@ -1,1 +1,21 @@
-[]
+[
+    {
+        "guid": "862b7dbc-9485-41f2-a9d9-fc9ca66a6a51",
+        "name": "Better Posters",
+        "description": "Better Posters is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from btttr.cc.\n",
+        "overview": "Fetch configurable Better Posters images from btttr.cc",
+        "owner": "Neureka",
+        "category": "MoviesAndShows",
+        "versions": [
+            {
+                "version": "1.0.4.0",
+                "changelog": "### Changed\n- Moved the plugin repository to a new home. Reinstall Better Posters with the updated repository URL to keep receiving updates.\n",
+                "targetAbi": "10.11.10.0",
+                "sourceUrl": "https://code.neureka.dev/jellyfin/plugins/better-posters/-/releases/1.0.4/downloads/better-posters_1.0.4.0.zip",
+                "checksum": "5b5aa525deac0a744ffd583ba09d1e0b",
+                "timestamp": "2026-07-10T18:57:53Z"
+            }
+        ],
+        "imageUrl": "https://code.neureka.dev/jellyfin/plugins/better-posters/-/raw/master/Assets/Catalog.png"
+    }
+]
