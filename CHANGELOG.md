@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-07-10
+
+### Changed
+- Moved the plugin repository to a new home. Reinstall Better Posters with the updated repository URL to keep receiving updates.
+
 ## [1.0.3] - 2026-06-16
 
 ### Added

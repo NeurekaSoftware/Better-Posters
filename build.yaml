@@ -1,7 +1,7 @@
 ---
 name: "Better Posters"
 guid: "862b7dbc-9485-41f2-a9d9-fc9ca66a6a51"
-version: "1.0.3.0"
+version: "1.0.4.0"
 targetAbi: "10.11.10.0"
 framework: "net9.0"
 overview: "Fetch configurable Better Posters images from btttr.cc"
@@ -13,8 +13,5 @@ imageUrl: "https://code.neureka.dev/jellyfin/plugins/better-posters/-/raw/master
 artifacts:
   - "BetterPosters.dll"
 changelog: |
-  ### Added
-  - Add catalog and preview artwork for plugin listings.
-
-  ### Fixed
-  - Prevent Update Better Posters from replacing posters in libraries where Better Posters is disabled.
+  ### Changed
+  - Moved the plugin repository to a new home. Reinstall Better Posters with the updated repository URL to keep receiving updates.
