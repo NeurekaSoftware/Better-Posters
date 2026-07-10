@@ -9,7 +9,7 @@ description: >
   Better Posters is a Jellyfin image fetcher for Movies and Shows that pulls configurable primary posters from btttr.cc.
 category: "MoviesAndShows"
 owner: "Neureka"
-imageUrl: "https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/Assets/Catalog.png"
+imageUrl: "https://code.neureka.dev/jellyfin/plugins/better-posters/-/raw/master/Assets/Catalog.png"
 artifacts:
   - "BetterPosters.dll"
 changelog: |

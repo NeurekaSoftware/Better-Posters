@@ -4,18 +4,26 @@
 
 # Better Posters
 
-[![Release](https://img.shields.io/badge/dynamic/json.svg?style=flat-square&logo=git&logoColor=F43F5E&label=Release&color=F43F5E&url=https://code.neureka.dev/api/v1/repos/jellyfin/better-posters/releases&query=$[0].tag_name)](https://code.neureka.dev/jellyfin/better-posters/releases)
-[![Actions](https://img.shields.io/badge/dynamic/json?style=flat-square&logo=gitlfs&logoColor=8B5CF6&label=Actions&color=8B5CF6&url=https://code.neureka.dev/api/v1/repos/jellyfin/better-posters/actions/runs&query=workflow_runs[0].status)](https://code.neureka.dev/jellyfin/better-posters/actions)
+[![Release](https://img.shields.io/badge/dynamic/json.svg?style=flat-square&logo=git&logoColor=F43F5E&label=Release&color=F43F5E&url=https://code.neureka.dev/api/v4/projects/2/releases&query=$[0].tag_name)](https://code.neureka.dev/jellyfin/plugins/better-posters/-/releases)
+[![Pipeline](https://img.shields.io/badge/dynamic/json?style=flat-square&logo=gitlab&logoColor=8B5CF6&label=Pipeline&color=8B5CF6&url=https://code.neureka.dev/api/v4/projects/2/pipelines&query=$[0].status)](https://code.neureka.dev/jellyfin/plugins/better-posters/-/pipelines)
 [![License](https://img.shields.io/github/license/NeurekaSoftware/Better-Posters?style=flat-square&label=License&color=14B8A6&logo=opensourceinitiative&logoColor=14B8A6)](./LICENSE.md)
-[![AI](https://img.shields.io/badge/AI-assisted-5786FE?style=flat-square&logo=deepseek&logoColor=5786FE)](https://code.neureka.dev/jellyfin/better-posters)
-[![Stars](https://img.shields.io/github/stars/NeurekaSoftware/Better-Posters?style=flat-square&label=Stars&color=EAB308&logo=googlegemini&logoColor=EAB308)](https://code.neureka.dev/jellyfin/better-posters)
+[![AI](https://img.shields.io/badge/AI-assisted-5786FE?style=flat-square&logo=deepseek&logoColor=5786FE)](https://code.neureka.dev/jellyfin/plugins/better-posters)
+[![Stars](https://img.shields.io/github/stars/NeurekaSoftware/Better-Posters?style=flat-square&label=Stars&color=EAB308&logo=googlegemini&logoColor=EAB308)](https://code.neureka.dev/jellyfin/plugins/better-posters)
 
 **Better Posters** is an unofficial Jellyfin plugin that lets you replace standard movie and show posters with customizable posters from [btttr.cc](https://btttr.cc).
 
 </div>
 
+> [!WARNING]
+> **We've moved — please reinstall Better Posters (migrated 2026-07-10).**
+> Better Posters is now hosted on a new server, so Jellyfin can no longer reach its old plugin repository and will not receive updates. If you installed it before this date, please reinstall it:
+>
+> 1. In Jellyfin, open **Dashboard -> Plugins -> Repositories** and remove the old **Better Posters** repository.
+> 2. Add the new repository URL: `https://code.neureka.dev/jellyfin/plugins/better-posters/-/raw/master/manifest.json`
+> 3. Reinstall **Better Posters** from **Dashboard -> Plugins -> Catalog**, then restart Jellyfin.
+
 > [!IMPORTANT]  
-> This repository's GitHub mirror is for reference only. Please submit bug reports and feature requests to our [official Forgejo repository](https://code.neureka.dev/jellyfin/better-posters).
+> This repository's GitHub mirror is for reference only. Please submit bug reports and feature requests to our [official GitLab repository](https://code.neureka.dev/jellyfin/plugins/better-posters).
 
 **Minimum Jellyfin version:** 10.11.10
 
@@ -35,7 +43,7 @@
 2. Add this repository URL:
 
     ```text
-    https://code.neureka.dev/jellyfin/better-posters/raw/branch/master/manifest.json
+    https://code.neureka.dev/jellyfin/plugins/better-posters/-/raw/master/manifest.json
     ```
 
 3. Open **Dashboard -> Plugins -> Catalog**.
@@ -45,7 +53,7 @@
 
 ### Option 2: Install Manually from a Release
 
-1. Download the latest `better-posters_*.zip` asset from the [Forgejo releases page](https://code.neureka.dev/jellyfin/better-posters/releases).
+1. Download the latest `better-posters_*.zip` asset from the [GitLab releases page](https://code.neureka.dev/jellyfin/plugins/better-posters/-/releases).
 2. Stop Jellyfin.
 3. Create a Better Posters plugin folder under your Jellyfin plugins directory.
 4. Extract the release zip into that folder.
