@@ -2,6 +2,6 @@
 stages: [test, release]
 
 include:
-  - component: $CI_SERVER_FQDN/components/jellyfin-plugin-release/release@1.0.0
+  - component: $CI_SERVER_FQDN/components/jellyfin-plugin/release@1.0.0
     inputs:
       solution: BetterPosters.sln
